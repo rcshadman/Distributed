@@ -29,10 +29,10 @@ class Servers():
 		with open(filename, 'rb') as csvfile:
 			linereader = csv.reader(csvfile, delimiter=',', quotechar='|')
 			for eachline in linereader:
+				# import ipdb; ipdb.set_trace()
 				if linereader.line_num == 1L:
 					pass
 				else:
-					# import ipdb; ipdb.set_trace()
 					server_details['dbname'] = eachline[6]
 					server_details['schema_name'] = eachline[2]
 					server_details['domain'] = eachline[0]
@@ -176,9 +176,9 @@ class main():
 		servers = Servers(filename)
 		
 		# Parallely spawn one process for each db connection
+		import ipdb; ipdb.set_trace()
 		p = Parallel(servers)
 		p.process()
-		import ipdb; ipdb.set_trace()
 
 
 	else:
