@@ -1,0 +1,385 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"crat",
+				"createdon"
+			],
+			[
+				"LEt",
+				"LETTER"
+			],
+			[
+				"da",
+				"dateend"
+			],
+			[
+				"date",
+				"datebegin"
+			],
+			[
+				"comman",
+				"command_list\timport"
+			],
+			[
+				"page",
+				"page-header"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"title",
+				"Title"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"padding",
+				"padding-top"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"url",
+				"urlpatterns\tstatement"
+			],
+			[
+				"s",
+				"static"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pask",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"dir(window)",
+			"dir()",
+			"dir",
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/shadman/Desktop/target_schema_list.csv",
+		"/home/shadman/Desktop/letters_report.csv",
+		"/home/shadman/Desktop/letters1.sql",
+		"/home/shadman/Desktop/letters.sql",
+		"/home/shadman/Desktop/generate_letters_report.sh",
+		"/home/shadman/Desktop/letters_report-gt_ujwal_netskope.csv",
+		"/home/shadman/Desktop/target_schema.csv",
+		"/home/shadman/mail-weekly-goal-report.sh",
+		"/home/shadman/Datascience/annie/etc/functions-ddl.sql",
+		"/home/shadman/Datascience/insights/dashboards/admin.py",
+		"/home/shadman/Datascience/insights/dashboards/models.py",
+		"/home/shadman/Datascience/insights/dashboards/views.py",
+		"/home/shadman/Datascience/insights/dashboards/urls.py",
+		"/home/shadman/Datascience/insights/dashboards/templates/dashboards/home.html",
+		"/home/shadman/Datascience/insights/kpis/utils.py",
+		"/home/shadman/Datascience/insights/ng-template/dashboards/accounts.html",
+		"/home/shadman/Datascience/insights/ng-template/dashboards/all_projects.html",
+		"/home/shadman/Datascience/insights/ng-template/dashboards/attrition_metrics.html",
+		"/home/shadman/Datascience/insights/dashboards/static/dashboards/js/dashboards.js",
+		"/home/shadman/Datascience/insights/core/static/core/css/c3.css",
+		"/home/shadman/Datascience/insights/accounts/tests.py",
+		"/home/shadman/Datascience/insights/accounts/__init__.py",
+		"/home/shadman/Datascience/insights/core/models.py",
+		"/home/shadman/Datascience/insights/core/views.py",
+		"/home/shadman/Datascience/insights/core/utils.py",
+		"/home/shadman/Datascience/insights/core/static/core/css/base.css",
+		"/home/shadman/Datascience/insights/charts/views.py",
+		"/home/shadman/Datascience/insights/accounts/admin.py",
+		"/home/shadman/Datascience/insights/accounts/urls.py",
+		"/home/shadman/Datascience/insights/blogs/admin.py",
+		"/home/shadman/Datascience/insights/blogs/forms.py",
+		"/home/shadman/Datascience/insights/accounts/views.py",
+		"/home/shadman/Datascience/insights/blogs/views.py",
+		"/home/shadman/Datascience/insights/blogs/urls.py",
+		"/home/shadman/Datascience/insights/blogs/twitter_bootstrap.py",
+		"/home/shadman/Datascience/insights/blogs/models.py",
+		"/home/shadman/Datascience/insights/accounts/models.py",
+		"/home/shadman/Datascience/insights/accounts/forms.py",
+		"/home/shadman/scripts/segments/general/segment_input2.sql",
+		"/home/shadman/scripts/segments/general/segment_input1.sql",
+		"/home/shadman/scripts/segments/general/genereate_segment.sh",
+		"/home/shadman/scripts/segments/general/segment_event.sql",
+		"/home/shadman/scripts/segments/input.sql",
+		"/home/shadman/scripts/segments/weekly.sh",
+		"/home/shadman/scripts/segments/reportTill-2017-01-08.csv",
+		"/home/shadman/scripts/goal/input.sql",
+		"/home/shadman/scripts/segments/segment_input2.sql",
+		"/home/shadman/scripts/segments/segment_input1.sql",
+		"/home/shadman/scripts/segments/genereate_segment.sh",
+		"/home/shadman/Datascience/insights-pinball/utils.py",
+		"/home/shadman/Datascience/insights-pinball/settings.py",
+		"/home/shadman/Datascience/insights-pinball/celeryjobs.py",
+		"/home/shadman/Datascience/insights-pinball/tasks.py",
+		"/home/shadman/Datascience/insights-pinball/start_luigi.sh",
+		"/home/shadman/Datascience/insights-pinball/requirements.txt",
+		"/home/shadman/Datascience/annie/arena/pit/templates/index.html",
+		"/home/shadman/Datascience/annie/arena/static/pit/css/pit.css",
+		"/home/shadman/Datascience/annie/arena/static/javascript/pit.js",
+		"/home/shadman/Datascience/annie/arena/static/css/pit.css",
+		"/home/shadman/Datascience/annie/arena/arena/urls.py",
+		"/home/shadman/Datascience/annie/arena/templates/pit/index.html",
+		"/home/shadman/Datascience/annie/arena/pit/admin.py",
+		"/home/shadman/Datascience/annie/arena/pit/urls.py",
+		"/home/shadman/Desktop/queries",
+		"/home/shadman/Datascience/annie/core/management.py",
+		"/home/shadman/Datascience/testsql.txt",
+		"/home/shadman/Desktop/tmux.txt",
+		"/home/shadman/Datascience/annie/meta/templates/app/appex-dw-ddl.sql",
+		"/home/shadman/Datascience/annie/meta/templates/app/appex-staging-ddl.sql",
+		"/home/shadman/Datascience/annie/meta/templates/vault/hub_ddl.sql",
+		"/home/shadman/Datascience/annie/annie-gui/settings.py",
+		"/home/shadman/Datascience/annie/Flask/settings.py",
+		"/home/shadman/Datascience/annie/Flask/launch.py",
+		"/home/shadman/Datascience/annie/conf/test-vault-config.yaml",
+		"/home/shadman/Datascience/annie/meta/templates/vault/link_ddl.sql",
+		"/home/shadman/Datascience/annie/target/appex-staging-ddl.txt",
+		"/home/shadman/Datascience/annie/conf/vault-config.yaml",
+		"/home/shadman/Datascience/annie/target/vault-ddl.txt",
+		"/home/shadman/Datascience/annie/target/fdw-ddl.txt",
+		"/home/shadman/Datascience/annie/target/migrations/satellites_dml.txt",
+		"/home/shadman/Datascience/annie/INSTALL",
+		"/home/shadman/Datascience/annie/README",
+		"/home/shadman/Datascience/annie/conf/project-loader.yaml",
+		"/home/shadman/Datascience/annie/conf/test-fdw-config.yaml",
+		"/home/shadman/Datascience/annie/meta/__init__.py"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"SELECT NULL",
+			"SELECT NULL AS",
+			"between now() - interval '6 month' and now()",
+			" between now() - interval '6 month' and now() ",
+			"6",
+			"and and",
+			"week",
+			"goal",
+			"weekly goal",
+			"?",
+			"account_summary",
+			"dv.d",
+			"annie2",
+			"anand",
+			"margin",
+			"$",
+			"lint",
+			"code",
+			"h1",
+			"list-group-item",
+			" \">",
+			"Genheader",
+			"Gentitle",
+			"Process",
+			"<p>Tagline</p>",
+			".\n",
+			"span",
+			"ANNIE_DIR",
+			"PROJECT_DIR",
+			"PROJECT",
+			"impo",
+			"></",
+			"DEBUG",
+			"render(request, 'index.html', context)",
+			"subproject",
+			"tblproject",
+			"hs_project",
+			"tblproject",
+			":283",
+			");",
+			"sub_industry_type",
+			"admin.",
+			" dv.h_sub_industry_type",
+			"admin.sub_industry_typ",
+			"0",
+			"viw",
+			"viwaccounts",
+			"accounts"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "generate_letter_report.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"fdw",
+				"conf/fdw-config.yaml"
+			],
+			[
+				"vault",
+				"conf/vault-config.yaml"
+			],
+			[
+				"vault-load",
+				"target/vault-load.txt"
+			],
+			[
+				"mana",
+				"core/management.py"
+			],
+			[
+				"dev",
+				"settings/dev.py"
+			],
+			[
+				"run",
+				"meta/ddl_runner.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
