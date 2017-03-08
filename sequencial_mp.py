@@ -146,21 +146,23 @@ class Sequencial():
 		for server in self.servers.server_list():
 			server_q.put(server)
 		return server_q
-# 4 int , long
+# 4 int (user id), long
 # 8 long long
 # 9 long, date
 
 	def reduce(self,result_map,neglect_count_reduce):
-		# for 2
+		# for rest
 		count_rest = 0 
-		# for 4
+		# for 2
 		template_count = {}
 		letter_template = set()
 		
-		# for 8
-		count_8 = 0
-		count_8_user = 0
+		# for 4,8
+		count_48 = 0
+		count_48_user = 0
 		# for 9
+		months = set()
+		monthly_count = {}
 		if debug:
 			for qu in result_map:
 				for sch in result_map[qu]:
@@ -178,48 +180,88 @@ class Sequencial():
 								if each_record[0] in letter_template:
 									template_count[each_record[0]] += each_record[1]
 						# long, long
-						if qu ==8:
-							pass
-
-						# int , long 
-						# if qu==4:
-						# 	user_count = 0
-						# 	disabled_count = 0
-						# 	for each in result_map[qu][sch]:
-						# 		if each in 
-						# 		if not user_count:
-						# 			user_count = 0
-						# 		if not disabled_count:
-						# 			disabled_count = 0
-						# 		user_count += 1
-						# 		disabled_count += 1
-
+						if qu in (4,8):
+							count_48_user += result_map[qu][sch][0][0]
+							count_48 += result_map[qu][sch][0][1]
+							
 						# 9 long date
-						if qu == 9:
-							pass
-							# for each in
+						if q==9:
+							for each_record in result_map[qu][sch]:
+								months.add(each_record[0])
+								monthly_count[each_record[0]] = 0
+							# months = list(months)
+							for each_record in result_map[qu][sch]:
+								if each_record[0] in months:
+									monthly_count[each_record[0]] += each_record[1]
 
-				
-				extract_query[qu]["result"] = count_rest
-				count_rest = 0
+
+				if q ==2:
+					extract_query[qu]["result"] = template_count
+					
+				elif q in (4,8):
+					extract_query[qu]["result"] = [count_48_user,count_48]
+					count_48 = 0
+					count_48_user = 0
+					
+				elif q==9:
+					extract_query[qu]["result"] = monthly_count
+					
+				else:
+					extract_query[qu]["result"] = count_rest
+					count_rest = 0
 			import pprint
 			pprint.pprint(template_count)
 
-							# import ipdb; ipdb.set_trace()
 		else:
+			for qu in result_map:
+				for svr in result_map[qu]:
+					for db in result_map[qu][svr]:
+						for sch in result_map[qu][svr][db]:
+							if len(result_map[qu][svr][db][sch]) != 0 and sch[0][0] != None:
+								# rest Long
+								if qu not in neglect_count_reduce:
+									count_rest += result_map[qu][svr][db][sch][0][0]
+								# 2 string , long
+								if qu == 2:
+									for each_record in result_map[qu][svr][db][sch]:
+										letter_template.add(each_record[0])
+										template_count[each_record[0]] = 0
+									# letter_template = list(letter_template)
+									for each_record in result_map[qu][svr][db][sch]:
+										if each_record[0] in letter_template:
+											template_count[each_record[0]] += each_record[1]
+								# long, long
+								if qu in (4,8):
+									count_48_user += result_map[qu][svr][db][sch][0][0]
+									count_48 += result_map[qu][svr][db][sch][0][1]
+									
+								# 9 long date
+								if q==9:
+									for each_record in result_map[qu][svr][db][sch]:
+										months.add(each_record[0])
+										monthly_count[each_record[0]] = 0
+									# months = list(months)
+									for each_record in result_map[qu][svr][db][sch]:
+										if each_record[0] in months:
+											monthly_count[each_record[0]] += each_record[1]
+
+
+				if q ==2:
+					extract_query[qu]["result"] = template_count
+					
+				elif q in (4,8):
+					extract_query[qu]["result"] = [count_48_user,count_48]
+					count_48 = 0
+					count_48_user = 0
+					
+				elif q==9:
+					extract_query[qu]["result"] = monthly_count
+					
+				else:
+					extract_query[qu]["result"] = count_rest
+					count_rest = 0
 			pass
-		# for q in result_map:
-		# 	for s in result_map[q]:
-		# 			for d in result_map[q][s]:
-		# 				for sch in result_map[q][s][d]:
-		# 					if q in (4,8):
-		# 						pass
-		# 					elif q is 9:
-		# 						pass
-		# 					else:
-		# 						count+=result_map[q][s][d][sch][0][0]
-		# 	extract_query[q]["result"] = count
-		# 	count = 0
+			# import ipdb; ipdb.set_trace()
 class main():
 	if  debug:
 		string = 'dbname=public_ashwini user=majordomo host=192.168.3.103'
@@ -252,12 +294,12 @@ class main():
 			# extract_query[task.keys()[0]]["result"] = s_temp_map
 			s_temp_map={}
 			par.task_q.task_done()
+		conn.close()
 		import pprint
 		pprint.pprint(result_map)
 		par.reduce(result_map,(2,4,8,9))
 		print " \n"
 		import ipdb; ipdb.set_trace()
-		conn.close()
 	else:
 
 
@@ -268,7 +310,7 @@ class main():
 		# Parallely spawn one process for each db connection
 		par = Sequencial(servers)
 
-		# result_map = {}
+		result_map = {}
 		server_temp = {}
 		db_temp = {}
 		schema_temp = {}
@@ -291,15 +333,19 @@ class main():
 						result = connObj.query_runner(par.task_q.queue[0].values())
 						connObj.close()
 						# par.servers.server_weight[server_name][dbname][schema_name] = result
-						s_temp_map[schema_name] = result
+						schema_temp[schema_name] = result
 						schema_q.task_done()
-					db_temp[dbname] = s_temp_map
+					db_temp[dbname] = schema_temp
+					schema_temp = {}
 					db_q.task_done()
 				server_temp[server_name] = db_temp
+				db_temp={}
 				par.server_q.task_done()
-			extract_query[task.keys()[0]]["result"] = server_temp
+			result_map[task.keys()[0]] = server_temp
+			server_temp = {}
 			par.task_q.task_done()
-			
+			# extract_query[task.keys()[0]]["result"] = server_temp
+		par.reduce(result_map,(2,4,8,9))
 		import pprint
 		pprint.pprint(result_map)
 		print " \n"
