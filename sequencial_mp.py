@@ -1,11 +1,11 @@
-import sys,psycopg2,csv,time,os,re
-import Queue
+import sys,psycopg2,csv,time,os,re, datetime, pprint, Queue
 from multiprocessing import cpu_count
 from multiprocessing import Pool,Lock, TimeoutError
 from itertools import repeat
 from functools import partial
 sys.path.append('~/Desktop/greytip/Desktop/letter_report/Distributed/')
 from query_list import extract_query
+
 # from functools import map, reduce
 # import imp
 # foo = imp.load_source('module.name', '/path/to/file.py')
@@ -29,7 +29,6 @@ class Servers():
 		with open(filename, 'rb') as csvfile:
 			linereader = csv.reader(csvfile, delimiter=',', quotechar='|')
 			for eachline in linereader:
-				# import ipdb; ipdb.set_trace()
 				if linereader.line_num == 1L:
 					pass
 				else:
@@ -146,71 +145,90 @@ class Sequencial():
 		for server in self.servers.server_list():
 			server_q.put(server)
 		return server_q
-# 4 int (user id), long
-# 8 long long
-# 9 long, date
+	def write_result_to_csv(self,):
+		pprint.pprint(extract_query)
+		with open('letter_report.csv', 'wb') as csvfile:
+			# writer = csv.reader(csvfile, delimiter=',', quotechar='|')
+			# dwriter = csv.DictWriter(extract_query[0], fieldnames=fieldnames)
+			fieldnames = ['description','','result']
+			writer = csv.writer(csvfile)
+			# dwriter.writerow(extract_query.keys())
+			# dwriter.writeheader()
+			writer.writerow(['S.No','Description',' Details','Result'])
+			for index,each_result in enumerate(extract_query.values()):
+				if isinstance(each_result["result"],dict):
+					writer.writerow([])
+					for e in each_result["result"]:
+						writer.writerow([index+1,each_result['description'],e,each_result['result'][e]])
+				elif isinstance(each_result["result"],list):
+					# import ipdb; ipdb.set_trace()
+					writer.writerow([])
+					writer.writerow([index+1,each_result['description'],each_result['result'][0],[each_result['result'][1]]])
+				else:
+					writer.writerow([index+1,each_result['description'],'',each_result['result']])
+					writer.writerow([])
 
 	def reduce(self,result_map,neglect_count_reduce):
-		# for rest
-		count_rest = 0 
-		# for 2
-		template_count = {}
-		letter_template = set()
 		
-		# for 4,8
-		count_48 = 0
-		count_48_user = 0
-		# for 9
-		months = set()
-		monthly_count = {}
+
+		count = [0]*5
+		fields = set()
+		field_count = {}
 		if debug:
 			for qu in result_map:
 				for sch in result_map[qu]:
-					if len(result_map[qu][sch]) != 0 and sch[0][0] != None:
-						# rest Long
-						if qu not in neglect_count_reduce:
-							count_rest += result_map[qu][sch][0][0]
-						# 2 string , long
-						if qu == 2:
-							for each_record in result_map[qu][sch]:
-								letter_template.add(each_record[0])
-								template_count[each_record[0]] = 0
-							# letter_template = list(letter_template)
-							for each_record in result_map[qu][sch]:
-								if each_record[0] in letter_template:
-									template_count[each_record[0]] += each_record[1]
-						# long, long
-						if qu in (4,8):
-							count_48_user += result_map[qu][sch][0][0]
-							count_48 += result_map[qu][sch][0][1]
+					if len(result_map[qu][sch]) != 0 and result_map[qu][sch][0][0] != None:
+						if len(extract_query[qu]['result_format']) ==1:
+							if extract_query[qu]['result_format'][0]['action']=='sum':
+								# if result_map[qu][sch][0][0] == None:
+								count[0] += result_map[qu][sch][0][0]
+						elif len(extract_query[qu]['result_format']) ==2:
+							if extract_query[qu]['result_format'][0]['action']=='sum':
+								# if qu in (4,8):
+								count[0] += result_map[qu][sch][0][0]
+								count[1] += result_map[qu][sch][0][1]
 							
-						# 9 long date
-						if q==9:
-							for each_record in result_map[qu][sch]:
-								months.add(each_record[0])
-								monthly_count[each_record[0]] = 0
-							# months = list(months)
-							for each_record in result_map[qu][sch]:
-								if each_record[0] in months:
-									monthly_count[each_record[0]] += each_record[1]
+							elif extract_query[qu]['result_format'][0]['action']=='groupby':
+
+								if extract_query[qu]['result_format'][0]['data_type'] == 'date':
+									for each_record in result_map[qu][sch]:
+										format_for_month = each_record[0].strftime('%m-%Y')
+										fields.add(format_for_month)
+										field_count[format_for_month] = 0
+									# fields = list(fields)
+									for each_record in result_map[qu][sch]:
+										if each_record[0].strftime('%m-%Y') in fields:
+											field_count[format_for_month] += each_record[1]
+								
+								if extract_query[qu]['result_format'][0]['data_type'] in 'string':
+									for each_record in result_map[qu][sch]:
+										field.add(each_record[0])
+										field_count[each_record[0]] = 0
+										# field = list(field)
+									for each_record in result_map[qu][sch]:
+										if each_record[0] in field:
+											field_count[each_record[0]] += each_record[1]
+							else:
+								pass
+						
 
 
-				if q ==2:
-					extract_query[qu]["result"] = template_count
-					
-				elif q in (4,8):
-					extract_query[qu]["result"] = [count_48_user,count_48]
-					count_48 = 0
-					count_48_user = 0
-					
-				elif q==9:
-					extract_query[qu]["result"] = monthly_count
-					
-				else:
-					extract_query[qu]["result"] = count_rest
-					count_rest = 0
+				# if qu ==2:
+				if len(extract_query[qu]['result_format']) ==1:
+					extract_query[qu]["result"] = count[0]
+					count[0] = 0
+				if len(extract_query[qu]['result_format']) == 2:
+					if extract_query[qu]['result_format'][0]['action']=='sum':
+						extract_query[qu]["result"] = [count[0],count[1]]
+						count[0] = 0
+						count[1] = 0
+						
+					elif extract_query[qu]['result_format'][0]['action']=='groupby':
+						extract_query[qu]["result"] = field_count
+						fields=set()
+						field_count={}					
 			import pprint
-			pprint.pprint(template_count)
+			# pprint.pprint(template_count)
 
 		else:
 			for qu in result_map:
@@ -236,7 +254,7 @@ class Sequencial():
 									count_48 += result_map[qu][svr][db][sch][0][1]
 									
 								# 9 long date
-								if q==9:
+								if qu==9:
 									for each_record in result_map[qu][svr][db][sch]:
 										months.add(each_record[0])
 										monthly_count[each_record[0]] = 0
@@ -246,15 +264,15 @@ class Sequencial():
 											monthly_count[each_record[0]] += each_record[1]
 
 
-				if q ==2:
+				if qu ==2:
 					extract_query[qu]["result"] = template_count
 					
-				elif q in (4,8):
+				elif qu in (4,8):
 					extract_query[qu]["result"] = [count_48_user,count_48]
 					count_48 = 0
 					count_48_user = 0
 					
-				elif q==9:
+				elif qu==9:
 					extract_query[qu]["result"] = monthly_count
 					
 				else:
@@ -296,10 +314,11 @@ class main():
 			par.task_q.task_done()
 		conn.close()
 		import pprint
-		pprint.pprint(result_map)
-		par.reduce(result_map,(2,4,8,9))
-		print " \n"
+		# pprint.pprint(result_map)
+		# import ipdb; ipdb.set_trace()
 		import ipdb; ipdb.set_trace()
+		par.reduce(result_map,(2,4,8,9))
+		par.write_result_to_csv()
 	else:
 
 
@@ -346,6 +365,7 @@ class main():
 			par.task_q.task_done()
 			# extract_query[task.keys()[0]]["result"] = server_temp
 		par.reduce(result_map,(2,4,8,9))
+		par.write_result_to_csv()
 		import pprint
 		pprint.pprint(result_map)
 		print " \n"

@@ -1,0 +1,89 @@
+S.No,Description, Details,Result
+1,Count of templates created by user [user defined template],,102
+
+2,Count of templates added by user from template gallery NA,,0
+
+
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy from word of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,3
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Salary Certificate of type : EMPLOYEESequence Generator : Salary Certificate - 00008Mail Template : Letter Default,3
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Proof of Address of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,18
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Salary details template of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,9
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Relieving Letter of type : EMPLOYEESequence Generator : Default Serial Number,7
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Address Proof Letter of type : EMPLOYEESequence Generator : Default Serial Number,15
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Client template2 of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,40
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Confirmation Letter of type : EMPLOYEESequence Generator : Default Serial Number,3
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Test Template of type : EMPLOYEESequence Generator : Default Serial Number,9
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Address Proof Letter of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Resignation Letter of type : EMPLOYEESequence Generator : Default Serial Number,2
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Client letter template1 of type : EMPLOYEESequence Generator : Default Serial Number,13
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Location Transfer Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Appointment Order of type : EMPLOYEESequence Generator : Default Serial Number,5
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy of Copy of Appointment Order of type : EMPLOYEESequence Generator : Default Serial Number,2
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Experience Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy of Address Proof Letter of type : EMPLOYEESequence Generator : Default Serial Number,9
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Table Letter Template of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy of Copy of Address Proof Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Bank Info Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Appointment Letter of type : EMPLOYEESequence Generator : Default Serial Number,19
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Manager Category Info of type : EMPLOYEESequence Generator : Manager Category Info - 00027Mail Template : Letter Default,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Letter Border Template of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Edit Department Transfer Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Offer Letter of type : EMPLOYEESequence Generator : Default Serial Number,8
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Re-Designation Letter of type : EMPLOYEESequence Generator : Default Serial Number,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template df of type : EMPLOYEESequence Generator : PER_LETTER,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template LETTER OF APPOINTMENT of type : EMPLOYEESequence Generator : Default Serial Number,4
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template error of type : EMPLOYEESequence Generator : PER_LETTER,3
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Offer Letter1 of type : EMPLOYEESequence Generator : Default Serial Number,3
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Appointment Order of type : EMPLOYEESequence Generator : Default Serial NumberMail Template : Letter Default,38
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Client Letter Template of type : EMPLOYEESequence Generator : Default Serial Number,21
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy of Appointment Order of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Copy of Experience Letter of type : EMPLOYEESequence Generator : Default Serial Number,1
+3,Number of times a template has been edited [Unique by templates],Updated Letter Template Letter of type : EMPLOYEESequence Generator : Default Serial Number,4
+4,Count of users who have setup letter templates (Created a new template),,7
+
+
+5,Number of templates which has been marked as Disabled along with count of users,6,[13L]
+6,Count of users who have created a new serial number NA,,49
+
+7,Count of users who have downloaded a template NA,,0
+
+8,Count of users who have configured a mail template ie dont have None as mail template along with number of templates NA,,0
+
+
+9,Count of users who have configured None as the mail template along with Number of templates,13,[13L]
+
+10,Count of letters generated  [month wise breakdown] - letter_ letters,06-2014,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,08-2016,6
+10,Count of letters generated  [month wise breakdown] - letter_ letters,02-2017,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,07-2016,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,01-2014,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,04-2016,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,04-2015,8
+10,Count of letters generated  [month wise breakdown] - letter_ letters,01-2017,0
+10,Count of letters generated  [month wise breakdown] - letter_ letters,03-2014,8
+11,Count of users who have accessed letters module - tblactiveservice,,0
+
+12,Count of letters generated without authorized signatory - letter_ letters,,40
+
+13,Count of users who downloaded a letter - tblauditlog,,0
+
+14,Count of users who published the letter to the employee portal - letter_letters : published field,,42
+
+15,Count of users who published the letter via email - isemailed .. like above,,3
+
+16,Number of times 'multiple employees' has been selected for publishing a letter - NA,,3
+
+17,Count of users who have used custom fields - letter_letters.. customfiledjson not null .. for updated by,,76
+
+18,Count of custom fields grouped by type - same as above !!!! last,,0
+
+19,Number of times custom fields have been used in letter templates - letter_template.. customfieldjson,,76
+
+20,List of all custom fields used in templates - letter_template customfieldjson !!!! last,,0
+
+21,Count of users who have header defined - tblauditlog,,16
+
+22,Count of users who have footer defined - tblauditlog,,26
+
+23,Count of users who have added a new authorized signatory - letter_authorizedsignatory -NA,,0
+
