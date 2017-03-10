@@ -15,6 +15,7 @@ class Servers():
 	def __init__(self,filename):
 		self.server_map, self.server_weight = {}, {}
 		self.server_map= self.generate_server_map(filename)
+		self.server_weight=self.generate_weight()
 
 	def generate_weight(self,):	
 		self.server_weight = {"count":len(self.server_map.keys())}
@@ -51,7 +52,6 @@ class Servers():
 					server_details['server_name'] = server_name
 					self.server_map[server_name][eachline[6]][eachline[1]].update(server_details)
 					server_details = {} 
-			self.generate_weight()
 			return self.server_map
 
 	# def get_server_map(self,filename=None):
@@ -92,9 +92,6 @@ class Connection():
 	def connect(self,):
 		self.conn = psycopg2.connect(self.connection_str)
 		self.cur = conn.cursor()
-		# self.server_info = server_info
-		# return conn,cur,server_info
-
 
 	def set_schema(self,schema_name):
 		result = self.cur.execute("set search_path to %s;",server_info['schema_name'])
@@ -148,12 +145,8 @@ class Sequencial():
 	def write_result_to_csv(self,):
 		pprint.pprint(extract_query)
 		with open('letter_report.csv', 'wb') as csvfile:
-			# writer = csv.reader(csvfile, delimiter=',', quotechar='|')
-			# dwriter = csv.DictWriter(extract_query[0], fieldnames=fieldnames)
 			fieldnames = ['description','','result']
 			writer = csv.writer(csvfile)
-			# dwriter.writerow(extract_query.keys())
-			# dwriter.writeheader()
 			writer.writerow(['S.No','Description',' Details','Result'])
 			for index,each_result in enumerate(extract_query.values()):
 				if isinstance(each_result["result"],dict):
@@ -161,7 +154,6 @@ class Sequencial():
 					for e in each_result["result"]:
 						writer.writerow([index+1,each_result['description'],e,each_result['result'][e]])
 				elif isinstance(each_result["result"],list):
-					# import ipdb; ipdb.set_trace()
 					writer.writerow([])
 					writer.writerow([index+1,each_result['description'],each_result['result'][0],[each_result['result'][1]]])
 				else:
@@ -180,36 +172,41 @@ class Sequencial():
 					if len(result_map[qu][sch]) != 0 and result_map[qu][sch][0][0] != None:
 						if len(extract_query[qu]['result_format']) ==1:
 							if extract_query[qu]['result_format'][0]['action']=='sum':
-								# if result_map[qu][sch][0][0] == None:
 								count[0] += result_map[qu][sch][0][0]
 						elif len(extract_query[qu]['result_format']) ==2:
-							if extract_query[qu]['result_format'][0]['action']=='sum':
-								# if qu in (4,8):
+							if extract_query[qu]['result_format'][0]['action']=='sum' and extract_query[qu]['result_format'][1]['action']=='sum':
+
 								count[0] += result_map[qu][sch][0][0]
 								count[1] += result_map[qu][sch][0][1]
 							
-							elif extract_query[qu]['result_format'][0]['action']=='groupby':
+							elif extract_query[qu]['result_format'][0]['action']=='groupby'  and extract_query[qu]['result_format'][1]['action']=='sum':
 
 								if extract_query[qu]['result_format'][0]['data_type'] == 'date':
 									for each_record in result_map[qu][sch]:
 										format_for_month = each_record[0].strftime('%m-%Y')
 										fields.add(format_for_month)
 										field_count[format_for_month] = 0
-									# fields = list(fields)
+
 									for each_record in result_map[qu][sch]:
 										if each_record[0].strftime('%m-%Y') in fields:
 											field_count[format_for_month] += each_record[1]
 								
 								if extract_query[qu]['result_format'][0]['data_type'] in 'string':
 									for each_record in result_map[qu][sch]:
-										field.add(each_record[0])
+										fields.add(each_record[0])
 										field_count[each_record[0]] = 0
-										# field = list(field)
+
 									for each_record in result_map[qu][sch]:
-										if each_record[0] in field:
+										if each_record[0] in fields:
 											field_count[each_record[0]] += each_record[1]
+
+							elif extract_query[qu]['result_format'][0]['action']=='file_output' and extract_query[qu]['result_format'][1]['action']=='file_output':
+								# import ipdb; ipdb.set_trace()
+								if extract_query[qu]['result_format'][1]['data_type']=='string' and extract_query[qu]['result_format'][1]['data_type']=='string':
+									for each_record in result_map[qu][sch]:
+										fields.add(each_record)
 							else:
-								pass
+								pass 
 						
 
 
@@ -218,68 +215,111 @@ class Sequencial():
 					extract_query[qu]["result"] = count[0]
 					count[0] = 0
 				if len(extract_query[qu]['result_format']) == 2:
-					if extract_query[qu]['result_format'][0]['action']=='sum':
+					if extract_query[qu]['result_format'][0]['action']=='sum' and extract_query[qu]['result_format'][1]['action']=='sum':
 						extract_query[qu]["result"] = [count[0],count[1]]
 						count[0] = 0
 						count[1] = 0
 						
-					elif extract_query[qu]['result_format'][0]['action']=='groupby':
+					elif extract_query[qu]['result_format'][0]['action']=='groupby' and extract_query[qu]['result_format'][1]['action']=='sum':
 						extract_query[qu]["result"] = field_count
 						fields=set()
-						field_count={}					
-			import pprint
-			# pprint.pprint(template_count)
+						field_count={}
+
+					elif extract_query[qu]['result_format'][0]['action']=='file_output' and extract_query[qu]['result_format'][1]['action']=='file_output':
+						new_dict={}
+						for each in list(fields):
+							new_dict[each[0]]=each[1]
+						extract_query[qu]["result"] = new_dict
+						fields = set()
+					else:
+						pass				
 
 		else:
 			for qu in result_map:
 				for svr in result_map[qu]:
 					for db in result_map[qu][svr]:
 						for sch in result_map[qu][svr][db]:
-							if len(result_map[qu][svr][db][sch]) != 0 and sch[0][0] != None:
-								# rest Long
-								if qu not in neglect_count_reduce:
-									count_rest += result_map[qu][svr][db][sch][0][0]
-								# 2 string , long
-								if qu == 2:
-									for each_record in result_map[qu][svr][db][sch]:
-										letter_template.add(each_record[0])
-										template_count[each_record[0]] = 0
-									# letter_template = list(letter_template)
-									for each_record in result_map[qu][svr][db][sch]:
-										if each_record[0] in letter_template:
-											template_count[each_record[0]] += each_record[1]
-								# long, long
-								if qu in (4,8):
-									count_48_user += result_map[qu][svr][db][sch][0][0]
-									count_48 += result_map[qu][svr][db][sch][0][1]
+							if len(result_map[qu][svr][db][sch]) != 0 and result_map[qu][svr][db][sch][0][0] != None:
+								if len(extract_query[qu]['result_format']) ==1:
+									if extract_query[qu]['result_format'][0]['action']=='sum':
+										count[0] += result_map[qu][svr][db][sch][0][0]
+								elif len(extract_query[qu]['result_format']) ==2:
+									if extract_query[qu]['result_format'][0]['action']=='sum' and extract_query[qu]['result_format'][1]['action']=='sum':
+
+										count[0] += result_map[qu][svr][db][sch][0][0]
+										count[1] += result_map[qu][svr][db][sch][0][1]
 									
-								# 9 long date
-								if qu==9:
-									for each_record in result_map[qu][svr][db][sch]:
-										months.add(each_record[0])
-										monthly_count[each_record[0]] = 0
-									# months = list(months)
-									for each_record in result_map[qu][svr][db][sch]:
-										if each_record[0] in months:
-											monthly_count[each_record[0]] += each_record[1]
+									elif extract_query[qu]['result_format'][0]['action']=='groupby' and extract_query[qu]['result_format'][1]['action']=='sum':
 
+										if extract_query[qu]['result_format'][0]['data_type'] == 'date' :
+											for each_record in result_map[qu][svr][db][sch]:
+												format_for_month = each_record[0].strftime('%m-%Y')
+												fields.add(format_for_month)
+												field_count[format_for_month] = 0
 
-				if qu ==2:
-					extract_query[qu]["result"] = template_count
+											for each_record in result_map[qu][svr][db][sch]:
+												if each_record[0].strftime('%m-%Y') in fields:
+													field_count[format_for_month] += each_record[1]
+										
+										if extract_query[qu]['result_format'][0]['data_type'] in 'string' :
+											for each_record in result_map[qu][svr][db][sch]:
+												fields.add(each_record[0])
+												field_count[each_record[0]] = 0
+
+											for each_record in result_map[qu][svr][db][sch]:
+												if each_record[0] in fields:
+													field_count[each_record[0]] += each_record[1]
+
+									elif extract_query[qu]['result_format'][0]['action']=='group_outside' and extract_query[qu]['result_format'][1]['action']=='group_outside':
+										if extract_query[qu]['result_format'][1]['data_type']=='string' and extract_query[qu]['result_format'][1]['data_type']=='string':
+											for each_record in result_map[qu][svr][db][sch]:
+												fields.add(each_recordc)
+									else:
+										pass
+								
+								else:
+									pass
+
+				
+				if len(extract_query[qu]['result_format']) ==1:
+					extract_query[qu]["result"] = count[0]
+					count[0] = 0
+				elif len(extract_query[qu]['result_format']) == 2:
+					if extract_query[qu]['result_format'][0]['action']=='sum' and extract_query[qu]['result_format'][1]['action']=='sum':
+						extract_query[qu]["result"] = [count[0],count[1]]
+						count[0] = 0
+						count[1] = 0
+						
+					elif extract_query[qu]['result_format'][0]['action']=='groupby' and extract_query[qu]['result_format'][1]['action']=='sum':
+						extract_query[qu]["result"] = field_count
+						fields=set()
+						field_count={}
+					elif extract_query[qu]['result_format'][0]['action']=='group_outside' and extract_query[qu]['result_format'][1]['action']=='group_outside':
+						new_dict={}
+						for each in list(fields):
+							new_dict[each[0]]=each[1]
+						extract_query[qu]["result"] = new_dict
+					else:
+						pass
+				# else:
+				# 	pass
+
+				# if qu ==2:
+				# 	extract_query[qu]["result"] = template_count
 					
-				elif qu in (4,8):
-					extract_query[qu]["result"] = [count_48_user,count_48]
-					count_48 = 0
-					count_48_user = 0
+				# elif qu in (4,8):
+				# 	extract_query[qu]["result"] = [count_48_user,count_48]
+				# 	count_48 = 0
+				# 	count_48_user = 0
 					
-				elif qu==9:
-					extract_query[qu]["result"] = monthly_count
+				# elif qu==9:
+				# 	extract_query[qu]["result"] = monthly_count
 					
-				else:
-					extract_query[qu]["result"] = count_rest
-					count_rest = 0
+				# else:
+				# 	extract_query[qu]["result"] = count_rest
+				# 	count_rest = 0
 			pass
-			# import ipdb; ipdb.set_trace()
+
 class main():
 	if  debug:
 		string = 'dbname=public_ashwini user=majordomo host=192.168.3.103'
@@ -294,7 +334,7 @@ class main():
 		while par.task_q.unfinished_tasks > 0:
 			task = par.task_q.get()
 			result_map[task.keys()[0]] = {}
-			# for each in schemas:
+			
 			schema_q = Queue.Queue(len(schemas))
 			for each in schemas:
 				schema_q.put({'schema_name':each[0]})
@@ -304,20 +344,19 @@ class main():
 				cur.execute("set search_path to {};".format(schema_name))
 				cur.execute(task.values()[0])
 				result = cur.fetchall()
-				# if server_info['dbname'] not in p.servers.db_list(each_server):
+				
 				s_temp_map[schema_name] = result
 				schema_q.task_done()
 			
 			result_map[task.keys()[0]] = s_temp_map
-			# extract_query[task.keys()[0]]["result"] = s_temp_map
+			
 			s_temp_map={}
 			par.task_q.task_done()
 		conn.close()
-		import pprint
+		# import pprint
 		# pprint.pprint(result_map)
-		# import ipdb; ipdb.set_trace()
-		import ipdb; ipdb.set_trace()
 		par.reduce(result_map,(2,4,8,9))
+		import ipdb; ipdb.set_trace()
 		par.write_result_to_csv()
 	else:
 
@@ -335,7 +374,7 @@ class main():
 		schema_temp = {}
 		while par.task_q.unfinished_tasks > 0:
 			task = par.task_q.get()
-			# result_map[task.keys()[0]] = {}
+			result_map[task.keys()[0]] = {}
 			while par.server_q.unfinished_tasks > 0:
 				server_name = par.server_q.get()
 				db_q = par.load_db_q(server_name)
@@ -345,13 +384,11 @@ class main():
 					while schema_q.unfinished_tasks > 0:
 						schema_name = schema_q.get()
 						server_info = par.servers.schema_info(server_name,dbname,schema_name)
-						# if server_info['dbname'] not in p.servers.db_list(each_server):
 						import ipdb; ipdb.set_trace()
 						connObj = Connection(server_info)
 						connObj.connect()
 						result = connObj.query_runner(par.task_q.queue[0].values())
 						connObj.close()
-						# par.servers.server_weight[server_name][dbname][schema_name] = result
 						schema_temp[schema_name] = result
 						schema_q.task_done()
 					db_temp[dbname] = schema_temp
@@ -363,7 +400,6 @@ class main():
 			result_map[task.keys()[0]] = server_temp
 			server_temp = {}
 			par.task_q.task_done()
-			# extract_query[task.keys()[0]]["result"] = server_temp
 		par.reduce(result_map,(2,4,8,9))
 		par.write_result_to_csv()
 		import pprint

@@ -47,7 +47,7 @@ S.No,Description, Details,Result
 
 7,Count of users who have downloaded a template NA,,0
 
-8,Count of users who have configured a mail template ie dont have None as mail template along with number of templates NA,,0
+8,Count of users who have configured a mail template ie dont have None as mail template along with number of templates NA,,15
 
 
 9,Count of users who have configured None as the mail template along with Number of templates,13,[13L]
@@ -71,7 +71,7 @@ S.No,Description, Details,Result
 
 15,Count of users who published the letter via email - isemailed .. like above,,3
 
-16,Number of times 'multiple employees' has been selected for publishing a letter - NA,,3
+16,Number of times 'multiple employees' has been selected for publishing a letter ,,3
 
 17,Count of users who have used custom fields - letter_letters.. customfiledjson not null .. for updated by,,76
 
@@ -79,11 +79,50 @@ S.No,Description, Details,Result
 
 19,Number of times custom fields have been used in letter templates - letter_template.. customfieldjson,,76
 
-20,List of all custom fields used in templates - letter_template customfieldjson !!!! last,,0
+20,Number of times a letter has been generated containing custom fields - letter_letters.. customfiledjson not null,,115
 
-21,Count of users who have header defined - tblauditlog,,16
 
-22,Count of users who have footer defined - tblauditlog,,26
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Offer Letter,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""textfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Re-Designation Letter,"{""fields"":[{""name"":""desgEffectiveDate"",""description"":""Effective Date of Designation"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Experience Letter,"{""fields"":[{""name"":""yearsInSErvice"",""description"":""Years In Service"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Edit Department Transfer Letter,"{""fields"":[{""name"":""deptEffectiveDate"",""description"":""Effective Date of Department"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Test,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Resignation Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Offer Letter,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""textfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Department Transfer Letter,"{""fields"":[{""name"":""deptEffectiveDate"",""description"":""Effective Date of Department"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Appointment Order,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""numberfield"",""required"":true},{""name"":""Date"",""description"":""DATE"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy from word,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Table Letter Template,"{""fields"":[{""name"":""Name"",""description"":""EmployeeName"",""type"":""textfield""},{""name"":""Date"",""description"":""Date"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Probation Extension Letter,"{""fields"":[{""name"":""extendProbation"",""description"":""Extend Probation (days)"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Copy of Address Proof Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Test Template,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Appointment Order,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Copy of Appointment Order,"{""fields"":[{""name"":""ctc"",""description"":""CTC"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,df,"{""fields"":[{""name"":""test"",""description"":""test"",""type"":""numberfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,LETTER OF APPOINTMENT,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Address Proof Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Offer Letter1,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Relieving Letter,"{""fields"":[{""name"":""LetterDate"",""description"":""Letter_Date"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Manager Category Info,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Letter Border Template,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Bank Info Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Address Proof Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Client template2,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Salary Certificate,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Client letter template1,"{""fields"":[{""name"":""Gender"",""description"":""GENDER"",""type"":""combo"",""required"":true,""listvalues"":""1:Male,2:Female,3:Others""}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Location Transfer Letter,"{""fields"":[{""name"":""locEffectiveDate"",""description"":""Effective Date of Location"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Copy of Copy of Re-Designation Letter,"{""fields"":[{""name"":""desgEffectiveDate"",""description"":""Effective Date of Designation"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Confirmation Letter,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Appointment Letter,"{""fields"":[{""name"":""ReportingTime"",""description"":""Reporting_Time"",""type"":""textfield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Proof of Address,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Re-Designation Letter,"{""fields"":[{""name"":""desgEffectiveDate"",""description"":""Effective Date of Designation"",""type"":""datefield"",""required"":true},{""name"":""Letterdate"",""description"":""Letter Date"",""type"":""datefield"",""required"":true}]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,error,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Client Letter Template,"{""fields"":[]}"
+21,List of all custom fields used in templates - letter_template customfieldjson !!!! last,Salary details template,"{""fields"":[{""name"":""PayrollMonth"",""description"":""PAYROLLMONTH"",""type"":""textfield"",""required"":true},{""name"":""Fromdate"",""description"":""FROMDATE"",""type"":""datefield"",""required"":true},{""name"":""Todate"",""description"":""TODATE"",""type"":""datefield"",""required"":true},{""name"":""Gender"",""description"":""GENDER"",""type"":""combo"",""required"":false,""listvalues"":""1:Male,2:Female""}]}"
+22,Count of users who have header defined - tblauditlog,,16
 
-23,Count of users who have added a new authorized signatory - letter_authorizedsignatory -NA,,0
+23,Count of users who have footer defined - tblauditlog,,26
+
+24,Count of users who have added a new authorized signatory - letter_authorizedsignatory -NA,,0
 

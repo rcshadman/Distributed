@@ -55,7 +55,7 @@ extract_query = {
 
     7: {"description":
         "Count of users who have configured a mail template ie dont have None as mail template along with number of templates NA",
-        "query": 'SELECT NULL AS "Empty";',
+        "query": 'select count(updatedby) from letter_template where mailtemplateid is not NULL;',
         "result_format":[{"data_type":"long","action":"sum"}],
         "result": {}
         },
@@ -110,7 +110,7 @@ extract_query = {
          },
 
     15: {"description":
-         "Number of times 'multiple employees' has been selected for publishing a letter - NA",
+         "Number of times 'multiple employees' has been selected for publishing a letter ",
          "query": "select count(*) from letter_letters where ispublished is True and mailother is True;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
@@ -146,28 +146,28 @@ extract_query = {
          "result": {}
          },
 
-    19: {"description":
+    20: {"description":
          "List of all custom fields used in templates - letter_template customfieldjson !!!! last",
-         "query": 'SELECT NULL AS "Empty";',
-         "result_format":[{"data_type":"long","action":"sum"}],
+         "query": 'select title, customfieldjson from letter_template where customfieldjson is not NULL;',
+         "result_format":[{"data_type":"string","action":"file_output"},{"data_type":"string","action":"file_output"}],
          "result": {}
          },
 
-    20: {"description":
+    21: {"description":
          "Count of users who have header defined - tblauditlog",
          "query": "select count(*) from (select userid from tblauditlog, tblauditcategory where auditcategory = tblauditcategory.cid and code like '%letter_options_add%' and additionalinfo like '%Letter option added header data%' ) t;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
          },
 
-    21: {"description":
+    22: {"description":
          "Count of users who have footer defined - tblauditlog",
          "query": "select count(*) from (select userid from tblauditlog, tblauditcategory where auditcategory = tblauditcategory.cid and code like '%letter_options_add%' and additionalinfo like '%Letter option added footer data%' ) t;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
          },
 
-    22: {"description":
+    23: {"description":
          "Count of users who have added a new authorized signatory - letter_authorizedsignatory -NA",
          "query": 'SELECT NULL AS "Empty";',
          "result_format":[{"data_type":"long","action":"sum"}],
