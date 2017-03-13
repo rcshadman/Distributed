@@ -119,21 +119,21 @@ extract_query = {
 
     16: {"description":
          "Count of users who have used custom fields - letter_letters.. customfiledjson not null .. for updated by",
-         "query": "select count(updatedby) from letter_template where customfieldjson is not null  ;",
+         "query": "select count(updatedby) from letter_template where customfieldjson is not NULL ;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
          },
 
     17: {"description":
-         "Count of custom fields grouped by type - same as above !!!! last",
-         "query": 'SELECT NULL AS "Empty";',
-         "result_format":[{"data_type":"long","action":"sum"}],
+         "COUNT of custom fields grouped by type - same as above !!!! last",
+         "query": "select customfieldjson from letter_template where customfieldjson is not NULL;",
+         "result_format":[{"data_type":"long","action":"group_sum"}],
          "result": {}
          },
 
     18: {"description":
          "Number of times custom fields have been used in letter templates - letter_template.. customfieldjson",
-         "query": "select count(*) from letter_template where customfieldjson is not null ;",
+         "query": "select count(*) from letter_template where customfieldjson is not NULL ;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
          },
@@ -141,15 +141,15 @@ extract_query = {
 
     19: {"description":
          "Number of times a letter has been generated containing custom fields - letter_letters.. customfiledjson not null",
-         "query": "select count(*) from letter_letters where customdatajson is not null  ;",
+         "query": "select count(*) from letter_letters where customdatajson is not NULL;",
          "result_format":[{"data_type":"long","action":"sum"}],
          "result": {}
          },
 
     20: {"description":
          "List of all custom fields used in templates - letter_template customfieldjson !!!! last",
-         "query": 'select title, customfieldjson from letter_template where customfieldjson is not NULL;',
-         "result_format":[{"data_type":"string","action":"file_output"},{"data_type":"string","action":"file_output"}],
+         "query": "select title, customfieldjson from letter_template where customfieldjson is not NULL;",
+         "result_format":[{"data_type":"string","action":"group_outside"},{"data_type":"string","action":"group_outside"}],
          "result": {}
          },
 

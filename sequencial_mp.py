@@ -200,7 +200,7 @@ class Sequencial():
 										if each_record[0] in fields:
 											field_count[each_record[0]] += each_record[1]
 
-							elif extract_query[qu]['result_format'][0]['action']=='file_output' and extract_query[qu]['result_format'][1]['action']=='file_output':
+							elif extract_query[qu]['result_format'][0]['action']=='group_outside' and extract_query[qu]['result_format'][1]['action']=='group_outside':
 								# import ipdb; ipdb.set_trace()
 								if extract_query[qu]['result_format'][1]['data_type']=='string' and extract_query[qu]['result_format'][1]['data_type']=='string':
 									for each_record in result_map[qu][sch]:
@@ -225,7 +225,7 @@ class Sequencial():
 						fields=set()
 						field_count={}
 
-					elif extract_query[qu]['result_format'][0]['action']=='file_output' and extract_query[qu]['result_format'][1]['action']=='file_output':
+					elif extract_query[qu]['result_format'][0]['action']=='group_outside' and extract_query[qu]['result_format'][1]['action']=='group_outside':
 						new_dict={}
 						for each in list(fields):
 							new_dict[each[0]]=each[1]
@@ -273,7 +273,7 @@ class Sequencial():
 									elif extract_query[qu]['result_format'][0]['action']=='group_outside' and extract_query[qu]['result_format'][1]['action']=='group_outside':
 										if extract_query[qu]['result_format'][1]['data_type']=='string' and extract_query[qu]['result_format'][1]['data_type']=='string':
 											for each_record in result_map[qu][svr][db][sch]:
-												fields.add(each_recordc)
+												fields.add(each_record)
 									else:
 										pass
 								
@@ -356,7 +356,7 @@ class main():
 		# import pprint
 		# pprint.pprint(result_map)
 		par.reduce(result_map,(2,4,8,9))
-		import ipdb; ipdb.set_trace()
+		# import ipdb; ipdb.set_traces()
 		par.write_result_to_csv()
 	else:
 

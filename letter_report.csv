@@ -75,7 +75,7 @@ S.No,Description, Details,Result
 
 17,Count of users who have used custom fields - letter_letters.. customfiledjson not null .. for updated by,,76
 
-18,Count of custom fields grouped by type - same as above !!!! last,,0
+18,COUNT of custom fields grouped by type - same as above !!!! last,,0
 
 19,Number of times custom fields have been used in letter templates - letter_template.. customfieldjson,,76
 
